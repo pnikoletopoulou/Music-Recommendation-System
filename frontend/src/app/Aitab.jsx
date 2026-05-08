@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "./api";
 
 export default function AiTab() {
     const [emotion, setEmotion] = useState("");
@@ -19,12 +19,8 @@ export default function AiTab() {
         setResult(null);
 
         try {
-            const token = localStorage.getItem("token");
-            const res = await axios.post(
-                "/api/predict/", 
-                { emotion, activity },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
+            const res = await API.post("predict/", { emotion, activity });
+            
             setResult(res.data);
         } catch (err) {
             setError("AI Error: Could not process these choices.");

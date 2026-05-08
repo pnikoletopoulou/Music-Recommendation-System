@@ -10,6 +10,7 @@ router.register('vibes', VibeViewSet, basename='vibes')
 urlpatterns = [
     path('', include(router.urls)),
     path('predict/', predict_vibe),
+    path('vibe/', VibeViewSet.as_view({'get': 'list', 'post': 'create'})),
     path('register/', register_user),
     path('login/', login_user),
 ]

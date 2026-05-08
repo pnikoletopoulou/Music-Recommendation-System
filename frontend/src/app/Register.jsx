@@ -39,39 +39,64 @@ export default function Register({onGoLogin}) {
         }
     };
 
-    return (
-        <div>
-            <h2>Register</h2>
+   return (
+        <div className="auth-container">
+            <div className="auth-card">
+                <h2 className="auth-title">Create Account</h2>
 
-            <form onSubmit={handleRegister}>
-                <input
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                <form onSubmit={handleRegister}>
+                    <input
+                        className="auth-input"
+                        placeholder="Choose Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    <input
+                        className="auth-input"
+                        type="password"
+                        placeholder="Choose Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>{success}</p>}
+                    {error && <p className="auth-error">{error}</p>}
+                    
+                    {success && (
+                        <p style={{ 
+                            color: "#28a745", 
+                            textAlign: "center", 
+                            marginBottom: "15px",
+                            fontSize: "14px" 
+                        }}>
+                            {success}
+                        </p>
+                    )}
 
-                <button disabled={loading}>
-                    {loading ? "Creating..." : "Register"}
-                </button>
-            </form>
-            <p>
-                Already have account?
-                <span 
-                onClick={onGoLogin} 
-                style={{ color: "blue", cursor: "pointer" }}>
-                    Login
-                </span>
-            </p>
+                    <button 
+                        className="auth-button" 
+                        disabled={loading}
+                    >
+                        {loading ? "Creating..." : "Register"}
+                    </button>
+                </form>
+
+                <p style={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>
+                    Already have an account?{" "}
+                    <span 
+                        onClick={onGoLogin} 
+                        style={{ 
+                            color: "#ff69b4", 
+                            cursor: "pointer", 
+                            fontWeight: "bold",
+                            textDecoration: "underline" 
+                        }}>
+                        Login here
+                    </span>
+                </p>
+            </div>
         </div>
     );
 }

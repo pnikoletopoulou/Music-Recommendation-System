@@ -4,49 +4,25 @@ export default function Navbar({ username, onLogout, onNavigate }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
 
-    return (
-        <div style={styles.navbar}>
-            
-            <div style={styles.brand}>
-                Music AI
+return (
+        <div className="topbar">
+           
+            <div className="brand" style={{ fontWeight: '800', color: '#333' }}>
+                Music AI <span style={{ color: '#ff69b4' }}>•</span> Dashboard
             </div>
 
-            <div style={styles.links}>
-                <button
-                    style={styles.link}
-                    onClick={() => onNavigate("dashboard")}
-                >
-                    Dashboard
-                </button>
-
-                <button
-                    style={styles.link}
-                    onClick={() => onNavigate("ai")}
-                >
-                    AI
-                </button>
-
-                <button
-                    style={styles.link}
-                    onClick={() => alert("History coming soon")}
-                >
-                    History
-                </button>
-            </div>
-
-            <div style={styles.userArea}>
-                <span style={styles.username}>
-                    {username}
+            <div className="userArea" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <span className="username" style={{ fontSize: '14px', fontWeight: '500' }}>
+                    Welcome, <strong style={{ color: '#ff69b4' }}>{username}</strong>
                 </span>
 
                 <button
-                    style={styles.logout}
+                    className="logout-btn"
                     onClick={onLogout}
                 >
                     Logout
                 </button>
             </div>
-
         </div>
     );
 }

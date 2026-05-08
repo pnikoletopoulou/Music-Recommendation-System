@@ -21,25 +21,27 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard">
-            {/* Sidebar / Navbar */}
             <div className="sidebar">
-                <div className="logo">MusicAI </div>
+                <div className="logo">MusicAI</div>
+                
                 <button 
-                    className={`sidebar-btn ${activeTab === 'ai' ? 'active' : ''}`}
+                    className={`sidebar-btn ${activeTab === 'ai' ? 'active' : ''}`} // Διορθώθηκε το $ εδώ
                     onClick={() => setActiveTab("ai")}
                 >
                     AI Recommendation
                 </button>
+                
                 <button 
                     className={`sidebar-btn ${activeTab === 'saved' ? 'active' : ''}`}
                     onClick={() => setActiveTab("saved")}
                 >
                     Saved Vibes
                 </button>
-                
-                <div style={{ marginTop: 'auto' }}>
+               
+                <div style={{ marginTop: 'auto', padding: '10px' }}>
                     <p style={{ fontSize: '12px', color: '#888', marginBottom: '10px' }}>
-                        Logged in as: <strong>{username}</strong>
+                        Logged in as: <br/>
+                        <strong style={{ color: '#ff69b4' }}>{username}</strong>
                     </p>
                     <button className="logout-btn" onClick={handleLogout}>
                         Logout
@@ -49,7 +51,9 @@ export default function Dashboard() {
 
             <div className="main">
                 <div className="topbar">
-                    <h2>{activeTab === "ai" ? "Generate New Vibe" : "Your Collection"}</h2>
+                    <h2 style={{ color: '#333', fontWeight: '800' }}>
+                        {activeTab === "ai" ? "Generate New Vibe" : "Your Collection"}
+                    </h2>
                 </div>
                 
                 <div className="content">
@@ -59,6 +63,9 @@ export default function Dashboard() {
                         <div className="result-card">
                             <h2 className="result-title">Coming Soon</h2>
                             <p className="result-message">Your saved playlists will appear here!</p>
+                            <div className="result-value" style={{ fontSize: '24px', marginTop: '20px' }}>
+                                 No saved playlists
+                            </div>
                         </div>
                     )}
                 </div>

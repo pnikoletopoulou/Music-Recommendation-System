@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./app/Login.jsx";
 import Register from "./app/Register.jsx";
 import Dashboard from "./app/Dashboard.jsx";
+import { AuthProvider } from "./app/Auth.jsx";
 import "./app/styles/App.css";
 
 function App() {
@@ -31,26 +32,30 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {mode === "login" && (
-        <Login
-          onLoginSuccess={handleLogin} 
-          onGoRegister={() => setMode("register")}
-        />
-      )}
 
-      {mode === "register" && (
-        <Register
-        />
-      )}
+    <AuthProvider>
+      <div className="app">
+        {mode === "login" && (
+          <Login
+            onLoginSuccess={handleLogin} 
+            onGoRegister={() => setMode("register")}
+          />
+        )}
 
-      {mode === "dashboard" && (
-        <Dashboard
-          username={user}
-          onLogout={handleLogout}
-        />
-      )}
-    </div>
+        {mode === "register" && (
+          <Register 
+            onGoLogin={() => setMode("login")} 
+          />
+        )}
+
+        {mode === "dashboard" && (
+          <Dashboard
+            username={user}
+            onLogout={handleLogout}
+          />
+        )}
+      </div>
+    </AuthProvider>
   );
 }
 

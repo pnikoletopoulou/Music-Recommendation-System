@@ -3,7 +3,7 @@ pymysql
 djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
-mysqlclient
 cryptography
 joblib
 scikit-learn
+pandas
