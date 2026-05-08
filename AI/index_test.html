@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Vibe Music AI MVP</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f0f2f5; padding-top: 50px; }
+        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); display: inline-block; }
+        select, button { padding: 12px; margin: 10px; border-radius: 6px; font-size: 16px; width: 200px; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #0056b3; }
+        #output { margin-top: 25px; font-size: 1.2em; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <p>Pick Mood & Activity:</p>
+
+        <select id="emotionInput">
+            <option value="Happy">Happy</option>
+            <option value="Sad">Sad</option>
+            <option value="Stressed">Stressed</option>
+            <option value="Energetic">Energetic</option>
+            <option value="Calm">Calm</option>
+            <option value="Angry">Angry</option>
+            <option value="Excited">Excited</option>
+
+        </select>
+
+        <select id="activityInput">
+            <option value="Party">Party</option>
+            <option value="Resting">Resting</option>
+            <option value="Studying">Studying</option>
+            <option value="Gym">Gym</option>
+            <option value="Meditation">Meditation</option>
+            <option value="Sleeping">Sleeping</option>
+        </select>
+
+        <br>
+        <button onclick="askAI()">Vibe</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        async function askAI() {
+            const emo = document.getElementById('emotionInput').value;
+            const act = document.getElementById('activityInput').value;
+            const outputDiv = document.getElementById('output');
+
+            outputDiv.innerText = "Σκέφτομαι...";
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ emotion: emo, activity: act })
+                });
+
+                const data = await response.json();
+                
+                if (data.genre) {
+                    outputDiv.innerText = data.genre;
+                } else {
+                    outputDiv.innerText = "Error: " + data.error;
+                }
+            } catch (error) {
+                outputDiv.innerText = "Error";
+            }
+        }
+    </script>
+</body>
+</html>

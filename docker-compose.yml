@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: music_app
+      MYSQL_USER: teta
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root
+    command: --default-authentication-plugin=mysql_native_password  
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - appnet
+
+  backend:
+    build: ./backend
+    container_name: django_backend
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    networks:
+      - appnet
+    command: sh -c "sleep 15 && python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  mysql_data:
+
+networks:
+  appnet:
+    driver: bridge

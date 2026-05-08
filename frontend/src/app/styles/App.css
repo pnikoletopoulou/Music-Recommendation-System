@@ -1,0 +1,277 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f0f0f;
+    color: #ffffff;
+}
+
+/* =========================
+   AUTH (LOGIN / REGISTER)
+========================= */
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1db95433, #0f0f0f);
+}
+
+.auth-card {
+    width: 360px;
+    background: #181818;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.auth-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1db954;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #282828;
+    color: white;
+    outline: none;
+}
+
+.auth-input:focus {
+    border: 1px solid #1db954;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background: #1db954;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+}
+
+.auth-button:hover {
+    background: #17a44a;
+}
+
+.auth-error {
+    color: #ff4d4d;
+    font-size: 13px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 240px;
+    background: #000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-right: 1px solid #222;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1db954;
+    margin-bottom: 20px;
+}
+
+.sidebar-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    padding: 12px;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sidebar-btn:hover {
+    background: #1f1f1f;
+    color: white;
+}
+
+.sidebar-btn.active {
+    background: #1db954;
+    color: black;
+    font-weight: bold;
+}
+
+/* MAIN AREA */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOPBAR */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #121212;
+    border-bottom: 1px solid #222;
+}
+
+.logout-btn {
+    background: #1db954;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CONTENT */
+
+.content {
+    padding: 25px;
+}
+
+/* =========================
+   AI TAB (CARD UI)
+========================= */
+
+.ai-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ai-card {
+    flex: 1;
+    background: #181818;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.ai-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #1db954;
+}
+
+.ai-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #282828;
+    color: white;
+}
+
+.ai-button {
+    width: 100%;
+    padding: 12px;
+    background: #1db954;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+}
+
+.ai-button:hover {
+    background: #17a44a;
+}
+
+/* RESULT CARD */
+
+.result-card {
+    flex: 1;
+    background: #121212;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.result-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.result-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1db954;
+}
+
+.result-message {
+    margin-top: 10px;
+    color: #ccc;
+}
+
+/* LOADING */
+
+.loading {
+    color: #1db954;
+    font-weight: bold;
+}
+
+/* =========================
+   SMALL COMPONENTS
+========================= */
+
+.link {
+    color: #1db954;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .ai-container {
+        flex-direction: column;
+    }
+}

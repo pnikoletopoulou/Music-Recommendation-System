@@ -1,0 +1,8 @@
+Django
+pymysql
+djangorestframework
+djangorestframework-simplejwt
+mysqlclient
+cryptography
+joblib
+scikit-learn
