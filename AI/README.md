@@ -2,7 +2,7 @@
 
 This folder contains the AI prototype for the Music Recommendation System.
 
-## Technologies User 
+## Technologies Used
 Flask 
 scikit-learn 
 pandas
