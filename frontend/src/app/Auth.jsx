@@ -11,9 +11,9 @@ export function AuthProvider({ children }) {
     }, []);
 
     const login = (username, token) => {
-        localStorage.setItem("assess_ai_user", username);
+        setUser({ username, token });
         localStorage.setItem("token", token);
-        setUser(username);
+        localStorage.setItem("username", username);
     };
 
     const logout = () => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./Auth.jsx";
 
-export default function Login({ onGoRegister}) {
+export default function Login({ onGoRegister, onLoginSuccess}) {
     const { login } = useAuth();
 
     const [username, setUsername] = useState("");
@@ -17,12 +17,14 @@ export default function Login({ onGoRegister}) {
 
         try {
             const res = await axios.post(
-                "http://127.0.0.1:8000/api/token/",
+                "/api/login/",
                 { username, password }
             );
 
-            login(username, res.data.access);
-
+            if (onLoginSuccess) {
+            onLoginSuccess(username, res.data.access);
+        }
+        
         } catch (err) {
             setError("Invalid credentials");
         } finally {
@@ -31,37 +33,41 @@ export default function Login({ onGoRegister}) {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="auth-container">
+            <div className="auth-card">
+                <h2 className="auth-title">Login</h2>
 
-            <form onSubmit={handleLogin}>
-                <input
-                    placeholder="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                <form onSubmit={handleLogin}>
+                    <input
+                        className="auth-input"
+                        placeholder="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
 
-                <input
-                    type="password"
-                    placeholder="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    <input
+                        className="auth-input"
+                        type="password"
+                        placeholder="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-                <button disabled={loading}>
-                    {loading ? "Logging in..." : "Login"}
-                </button>
-            </form>
-            <p>
-                Don't have account?
-                <span 
-                onClick={() => onGoRegister?.()}
-                style={{ color: "blue", cursor: "pointer" }}>
-                    Register
-                </span>
-            </p>
+                    <button className="auth-button" disabled={loading}>
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
+                </form>
+                <p>
+                    Don't have account?
+                    <span
+                        onClick={() => onGoRegister?.()}
+                        style={{ color: "blue", cursor: "pointer" }}>
+                        Register
+                    </span>
+                </p>
+            </div>
         </div>
     );
 }
