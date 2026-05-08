@@ -22,8 +22,10 @@ services:
     build: ./backend
     container_name: django_backend
     restart: always
-    depends_on: mysql
-    networks: appnet
+    depends_on: 
+     - mysql
+    networks: 
+    - appnet
     command: sh -c "sleep 10 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
   frontend:
@@ -44,7 +46,8 @@ services:
     depends_on:
       - backend
       - frontend
-    networks: appnet
+    networks:
+    - appnet
 
 volumes:
   mysql_data:
