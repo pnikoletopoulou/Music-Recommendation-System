@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'music_app',
         'USER': 'teta',
         'PASSWORD': '1234',
-        'HOST': 'mysql_db',
+        'HOST': 'mysql',
         'PORT': '3306',
         'OPTIONS': {
              'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
