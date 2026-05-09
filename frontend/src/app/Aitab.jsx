@@ -28,6 +28,19 @@ export default function AiTab() {
         }
     };
 
+    const saveVibe = async () => {
+        try {
+            await API.post("vibes/", {
+                emotion: result.emotion,
+                activity: result.activity,
+                recommended_genre: result.genre
+            });
+            alert("Vibe saved to your profile!");
+        } catch (err) {
+            console.error("Save error:", err.response?.data);
+            alert("Failed to save vibe.");
+        }
+    };
     return (
         <div className="ai-container">
             <div className="ai-card">
@@ -67,6 +80,7 @@ export default function AiTab() {
                 {error && <p style={{ color: "red", marginTop: "10px", textAlign: "center" }}>{error}</p>}
             </div>
 
+
             <div className="result-card">
                 {result ? (
                     <div className="result-box">
@@ -75,6 +89,11 @@ export default function AiTab() {
                         <p style={{ fontStyle: "italic", color: "#666", marginTop: "10px" }}>
                             "{result.message}"
                         </p>
+
+                
+                        <button onClick={saveVibe} className="save-button" style={{ marginTop: '15px' }}>
+                            Save to Profile
+                        </button>
                     </div>
                 ) : (
                     <div className="result-placeholder">
@@ -85,5 +104,6 @@ export default function AiTab() {
                 )}
             </div>
         </div>
+
     );
 }

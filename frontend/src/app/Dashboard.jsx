@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AiTab from "./AiTab.jsx";
+import HistoryTab from "./HistoryTab.jsx";
 import Navbar from "./Navbar.jsx";
 import { useAuth } from "./Auth.jsx";
 
@@ -53,24 +54,17 @@ export default function Dashboard() {
             <div className="main">
                 <div className="topbar">
                     <h2 style={{ color: '#333', fontWeight: '800' }}>
-                        {activeTab === "ai" ? "Generate New Vibe" : "Your Collection"}
+                        {activeTab === "ai" ? "Generate New Vibe" : "Your Vibe History"}
                     </h2>
                 </div>
 
                 <div className="content">
                     {activeTab === "ai" && <AiTab />}
 
-                    {activeTab === "saved" && (
-                        <div className="result-card">
-                            <h2 className="result-title">Coming Soon</h2>
-                            <p className="result-message">Your saved playlists will appear here!</p>
-                            <div className="result-value" style={{ fontSize: '24px', marginTop: '20px' }}>
-                                No saved playlists
-                            </div>
-                        </div>
-                    )}
+                    {activeTab === "saved" && <HistoryTab />}
                 </div>
             </div>
         </div>
+
     );
 }

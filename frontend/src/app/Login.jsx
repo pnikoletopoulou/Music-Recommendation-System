@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "./api";
 import { useAuth } from "./Auth.jsx";
 
-export default function Login({ onGoRegister, onLoginSuccess}) {
+export default function Login({ onGoRegister, onLoginSuccess }) {
     const { login } = useAuth();
 
     const [username, setUsername] = useState("");
@@ -16,15 +16,17 @@ export default function Login({ onGoRegister, onLoginSuccess}) {
         setError("");
 
         try {
-            const res = await axios.post(
-                "/api/login/",
+            const res = await API.post(
+                "login/",
                 { username, password }
             );
+            localStorage.setItem("token", res.data.access);
+            localStorage.setItem("username", username);
 
             if (onLoginSuccess) {
-            onLoginSuccess(username, res.data.access);
-        }
-        
+                onLoginSuccess(username, res.data.access);
+            }
+
         } catch (err) {
             setError("Invalid credentials");
         } finally {
@@ -59,12 +61,17 @@ export default function Login({ onGoRegister, onLoginSuccess}) {
                         {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
-                <p>
-                    Don't have account?
+                <p style={{ textAlign: "center", marginTop: "20px", fontSize: "14px", color: "#666" }}>
+                    Don't have an account?{" "}
                     <span
-                        onClick={() => onGoRegister?.()}
-                        style={{ color: "blue", cursor: "pointer" }}>
-                        Register
+                        onClick={onGoRegister}
+                        style={{
+                            color: "#ff69b4",
+                            cursor: "pointer",
+                            fontWeight: "bold",
+                            textDecoration: "underline"
+                        }}>
+                        Register here
                     </span>
                 </p>
             </div>

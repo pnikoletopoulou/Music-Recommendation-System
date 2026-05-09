@@ -116,6 +116,7 @@ def login_user(request):
     username = request.data.get("username")
     password = request.data.get("password")
     user = authenticate(username=username, password=password)
+
     if user is not None:
         refresh = RefreshToken.for_user(user)
         return Response({
@@ -128,7 +129,9 @@ def login_user(request):
 class VibeViewSet(viewsets.ModelViewSet):
     serializer_class = SavedVibeSerializer
     permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         return SavedVibe.objects.filter(user=self.request.user)
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
