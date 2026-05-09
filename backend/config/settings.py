@@ -91,12 +91,13 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'music_app'),
         'USER': os.environ.get('DB_USER', 'teta'),
         'PASSWORD': os.environ.get('DB_PASSWORD', '1234'),
-        'HOST': os.environ.get('DB_HOST', 'mysql'),
+        'HOST': os.environ.get('DB_HOST', 'music-db-cluster-do-user-37079153-0.j.db.ondigitalocean.com'),
         'PORT': os.environ.get('DB_PORT', '25060'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'ssl': {
-                'ca': '/etc/ssl/certs/ca-certificates.crt',
+                'reject_unauthorized': False, 
+                'ca': '/etc/ssl/certs/ca-certificates.crt', 
             },
         }
     }
