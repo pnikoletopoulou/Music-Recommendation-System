@@ -152,27 +152,35 @@ CORS_ALLOWED_ORIGINS = [
 
 # OWASP FIXES
 
-# 1. Missing Anti-clickjacking Header
+if 'csp' not in INSTALLED_APPS:
+    INSTALLED_APPS += ['csp']
+
+MIDDLEWARE.insert(0, 'csp.middleware.CSPMiddleware')
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'")
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:", "https:")
+CSP_FONT_SRC = ("'self'", "https:", "data:")
+CSP_CONNECT_SRC = ("'self'", "https://shark-app-dbgfe.ondigitalocean.app")
+
 X_FRAME_OPTIONS = 'DENY'
 
-# 2. Strict-Transport-Security Header 
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-# 3. Content-Type Sniffing & XSS Filter
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
-# 4. Cookie Security 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 
-# 5. SSL/HTTPS F
 SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# 6. Content Security Policy 
-CSP_DEFAULT_SRC = ("'self'",)
+SECURE_REFERRER_POLICY = "same-origin"
