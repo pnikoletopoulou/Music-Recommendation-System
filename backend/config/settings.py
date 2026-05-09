@@ -88,7 +88,6 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # Αν υπάρχει DB_NAME στο DigitalOcean το παίρνει, αλλιώς βάζει 'music_app'
         'NAME': os.environ.get('DB_NAME', 'music_app'),
         'USER': os.environ.get('DB_USER', 'teta'),
         'PASSWORD': os.environ.get('DB_PASSWORD', '1234'),
