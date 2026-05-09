@@ -96,6 +96,8 @@ DATABASES = {
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'},
+            'ssl_mode': 'REQUIRED',
+            'check_hostname': False,
         }
     }
 }
