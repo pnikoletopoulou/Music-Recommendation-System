@@ -49,7 +49,7 @@ docker-compose up --build
 ### Database setup 
 
 ```bash 
-docker-compose up --build
+docker-compose exec backend python manage.py migrate
 ```
 
 ### Access the Application  
