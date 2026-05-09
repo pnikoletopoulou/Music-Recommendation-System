@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-zs@fhuq&ba06bmz%i3_-672spvz0)o4&s*5s45d6uis+^!(23l'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'shark-app-dbgfe.ondigitalocean.app', 
@@ -149,3 +149,30 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://shark-app-dbgfe.ondigitalocean.app",
 ]
+
+# OWASP FIXES
+
+# 1. Missing Anti-clickjacking Header
+X_FRAME_OPTIONS = 'DENY'
+
+# 2. Strict-Transport-Security Header 
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# 3. Content-Type Sniffing & XSS Filter
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
+# 4. Cookie Security 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+# 5. SSL/HTTPS F
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# 6. Content Security Policy 
+CSP_DEFAULT_SRC = ("'self'",)
