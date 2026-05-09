@@ -8,3 +8,4 @@ cryptography
 joblib
 scikit-learn
 pandas
+gunicorn
