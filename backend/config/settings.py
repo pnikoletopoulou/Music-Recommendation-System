@@ -94,15 +94,14 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST', 'music-db-cluster-do-user-37079153-0.j.db.ondigitalocean.com'),
         'PORT': os.environ.get('DB_PORT', '25060'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'ssl': {
-                'reject_unauthorized': False, 
-                'ca': '/etc/ssl/certs/ca-certificates.crt', 
-            },
+                'check_hostname': False,
+                'ssl_mode': 'REQUIRED',  
+                'ca': None,
+            }                  
         }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
