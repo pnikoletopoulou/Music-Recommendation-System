@@ -96,9 +96,10 @@ DATABASES = {
         'OPTIONS': {
             'ssl': {
                 'check_hostname': False,
-                'ssl_mode': 'REQUIRED',  
-                'ca': None,
-            }                  
+                'verify_identity': False, 
+                'ca': None, 
+            },
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
     }
 }
