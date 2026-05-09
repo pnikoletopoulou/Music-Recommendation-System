@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: window.location.hostname === "localhost" 
+        ? "http://localhost:8000/api/" 
+        : "https://shark-app-xxxx.ondigitalocean.app/api/",
 });
 
 API.interceptors.request.use((req) => {
