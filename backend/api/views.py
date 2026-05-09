@@ -14,17 +14,24 @@ from rest_framework.response import Response
 from .models import SavedVibe
 from .serializers import SavedVibeSerializer
 
-CSV_PATH = os.path.join(os.path.dirname(__file__), './music_dataset_mock2.csv')
+CSV_PATH = os.path.join(os.path.dirname(__file__), 'music_dataset_mock2.csv')
 
 EMOTION_MAP = {
-    "happy": "Happy", "sad": "Sad", "energetic": "Energetic",
-    "stressed": "Stressed", "calm": "Calm", "angry": "Angry", "excited": "Excited",
+    "happy": "Happy",
+    "sad": "Sad",
+    "stressed": "Stressed",
+    "energetic": "Energetic",
+    "calm": "Calm",
+    "angry": "Angry",
+    "excited": "Excited"
 }
 
 ACTIVITY_MAP = {
-    "working out": "Gym", "studying": "Studying", "relaxing at home": "Resting",
-    "going out": "Party", "running": "Gym", "falling asleep": "Resting",
-    "reading": "Resting", "driving": "Resting", "working / coding": "Studying",
+    "party": "Party",
+    "relaxing": "Resting",
+    "studying": "Studying",
+    "gym": "Gym",
+    "meditation": "Meditation"
 }
 
 ML_READY = False

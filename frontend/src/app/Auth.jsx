@@ -17,9 +17,11 @@ export function AuthProvider({ children }) {
     };
 
     const logout = () => {
-        localStorage.removeItem("assess_ai_user");
         localStorage.removeItem("token");
+        localStorage.removeItem("username");
         setUser(null);
+    
+        window.location.href = "/";
     };
 
     return (
