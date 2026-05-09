@@ -5,11 +5,14 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/register/', register_user),
-    path('api/login/', login_user),
-    path('api/predict/', predict_vibe),
+    
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('register/', register_user),
+    path('login/', login_user),
+    path('predict/', predict_vibe),
+    
+    path('', include('api.urls')), 
+    
     path('vibe/', VibeViewSet.as_view({'get': 'list', 'post': 'create'})),
 ]
