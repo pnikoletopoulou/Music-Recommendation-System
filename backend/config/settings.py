@@ -92,12 +92,12 @@ DATABASES = {
         'USER': os.environ.get('DB_USER', 'teta'),
         'PASSWORD': os.environ.get('DB_PASSWORD', '1234'),
         'HOST': os.environ.get('DB_HOST', 'mysql'),
-        'PORT': os.environ.get('DB_PORT', '3306'),
+        'PORT': os.environ.get('DB_PORT', '25060'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'},
-            'ssl_mode': 'REQUIRED',
-            'check_hostname': False,
+            'ssl': {
+                'ca': '/etc/ssl/certs/ca-certificates.crt',
+            },
         }
     }
 }
