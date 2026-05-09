@@ -25,7 +25,7 @@ export default function Dashboard() {
                 <div className="logo">MusicAI</div>
                 
                 <button 
-                    className={`sidebar-btn ${activeTab === 'ai' ? 'active' : ''}`} // Διορθώθηκε το $ εδώ
+                    className={`sidebar-btn ${activeTab === 'ai' ? 'active' : ''}`} 
                     onClick={() => setActiveTab("ai")}
                 >
                     AI Recommendation

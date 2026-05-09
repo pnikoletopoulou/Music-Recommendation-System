@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from .models import SavedVibe
 from .serializers import SavedVibeSerializer
 
-CSV_PATH = os.path.join(os.path.dirname(__file__), '../ai/music_dataset_mock.csv')
+CSV_PATH = os.path.join(os.path.dirname(__file__), './music_dataset_mock2.csv')
 
 EMOTION_MAP = {
     "happy": "Happy", "sad": "Sad", "energetic": "Energetic",

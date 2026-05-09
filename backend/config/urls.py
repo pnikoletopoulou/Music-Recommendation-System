@@ -10,5 +10,5 @@ urlpatterns = [
     path('api/register/', register_user),
     path('api/login/', login_user),
     path('api/predict/', predict_vibe),
-    path('api/vibe/', VibeViewSet),
+    path('vibe/', VibeViewSet.as_view({'get': 'list', 'post': 'create'})),
 ]
