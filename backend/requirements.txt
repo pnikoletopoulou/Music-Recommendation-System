@@ -1,8 +1,9 @@
-Django
+Django>=5.0
 pymysql
 djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
+django-csp
 mysqlclient
 cryptography
 joblib
